@@ -1,0 +1,26 @@
+//-------------------------------WriteObject.java-----------------------------------------
+import java.io.*;
+class Customer implements Serializable{
+	int code;
+	String name;
+	Customer(int code, String name){this.code=code;this.name=name;}
+}
+class WriteObject{
+	public static void main(String args[])throws IOException{
+		FileOutputStream fos=new FileOutputStream("Customer.ser");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		Customer c1=new Customer(1001,"Danapala");
+		oos.writeObject(c1);
+	}
+}
+
+//-------------------------------ReadObject.java-----------------------------------------
+import java.io.*;
+class ReadObject{
+	public static void main(String args[])throws IOException,ClassNotFoundException{
+		FileInputStream fis=new FileInputStream("Customer.ser");
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Customer c1=(Customer)ois.readObject(); //throws ClassNotFoundException
+		c1.printCustomer();
+	}
+}

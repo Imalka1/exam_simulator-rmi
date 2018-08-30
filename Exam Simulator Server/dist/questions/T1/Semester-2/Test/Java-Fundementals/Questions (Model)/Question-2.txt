@@ -1,0 +1,17 @@
+//-------------------------------WriteObject.java-----------------------------------------
+import java.io.*;
+class Customer implements Serializable{
+	int code;
+	String name;
+	Customer(int code, String name){this.code=code;this.name=name;}
+}
+class WriteObject{
+	public static void main(String args[])throws IOException{
+		FileOutputStream fos=new FileOutputStream("Customer.ser");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		Customer c1=new Customer(1001,"Danapala");
+		oos.writeObject(c1);
+	}
+}
+gggggggggggggggggggggg
+

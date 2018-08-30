@@ -1,0 +1,35 @@
+import java.io.*;
+class Customer implements Serializable{
+	transient int code;
+	String name;
+	Customer(){
+		System.out.println("Customer()");
+	}
+	Customer(int code, String name){
+		this.code=code;this.name=name;
+		System.out.println("Customer(int,String)");
+	}
+	public void printCustomer(){
+		System.out.println(code+" - "+name);
+	}
+}
+class WriteObject{
+	public static void main(String args[])throws IOException{
+		FileOutputStream fos=new FileOutputStream("Customer.ser");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		Customer c1=new Customer(1001,"Danapala");
+		oos.writeObject(c1);
+		Serializable ob=new int[4];
+	}
+}
+
+import java.io.*;
+class ReadObject{
+	public static void main(String args[])throws IOException,ClassNotFoundException{
+		FileInputStream fis=new FileInputStream("Customer.ser");
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Customer c1=(Customer)ois.readObject(); //throws ClassNotFoundException
+		c1.printCustomer();
+		
+	}
+}
